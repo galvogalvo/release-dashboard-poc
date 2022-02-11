@@ -70,7 +70,7 @@
   align-items: center;
   justify-content: center;
   flex-wrap: wrap;
-  max-width: 800px;
+  max-width: 1600px;
 }
 
 .card {
@@ -106,6 +106,14 @@
 .logo {
   height: 1em;
   margin-left: 0.5rem;
+}
+
+.red {
+  background-color: #aa0000;
+}
+
+.green {
+  background-color: #00aa00;
 }
 
 @media (max-width: 600px) {
