@@ -34,7 +34,7 @@ export default function Home({ repositories }) {
         {repositories.map((repository) => (
           repository.latestRelease && 
           <>
-            <div className={ sinceLastRelease(repository.latestRelease.createdAt) < 8 ? styles.green + " " + styles.card : styles.red + " " + styles.card}>
+            <div className={ sinceLastRelease(repository.latestRelease.createdAt) < 8 ? styles.green + " " + styles.card : sinceLastRelease(repository.latestRelease.createdAt) < 14 ? styles.amber + " " + styles.card : styles.red + " " + styles.card}>
               <h3>{repository.name}</h3>
               <p>{ sinceLastRelease(repository.latestRelease.createdAt) + ' days since last release' }
               </p>
@@ -92,7 +92,6 @@ export async function getStaticProps() {
     }
     `,
   });
-  console.log(data.organization.repositories.nodes);
   return {
     props: {
       repositories: data.organization.repositories.nodes
