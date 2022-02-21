@@ -120,6 +120,17 @@
   background-color: #00aa00;
 }
 
+/* NAV */
+
+ul.navigation {
+  list-style-type: none;
+}
+
+ul.navigation li {
+  float: left;
+  margin-right: 30px
+}
+
 @media (max-width: 600px) {
   .grid {
     width: 100%;
