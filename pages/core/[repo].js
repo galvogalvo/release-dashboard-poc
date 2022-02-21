@@ -1,4 +1,3 @@
-import { useRouter } from 'next/router'
 import styles from '../../styles/Home.module.css'
 import Header from '../components/header'
 import Navbar from '../components/navbar'
@@ -7,7 +6,7 @@ import Releaselist from '../components/releaselist'
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
 
-export default function Core({ releases }) {
+export default function Core({ releases, filter }) {
 
   return (
     <div className={styles.container}>
@@ -16,15 +15,16 @@ export default function Core({ releases }) {
       <main className={styles.main}>
         <Navbar />
 
-        <Releaselist releases={releases} />
+        <Releaselist releases={releases} filter={filter} />
       </main>
 
     </div>
   )
 }
 
-export async function getServerSideProps(router) {
-  const selectedRepo = router.params.repo;
+export async function getServerSideProps(context) {
+  const selectedRepo = context.params.repo;
+  const filter = context.query && context.query.site ? context.query.site : null;
   const { data } = await client.query({
     query: gql`
     query{
@@ -42,10 +42,10 @@ export async function getServerSideProps(router) {
     }
     `,
   });
-  // console.log(data.repository.releases.nodes);
   return {
     props: {
-      releases: data.repository.releases.nodes
+      filter: filter,
+      releases: data.repository.releases.nodes,
     },
  };
 }

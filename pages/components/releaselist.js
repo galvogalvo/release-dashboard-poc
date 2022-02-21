@@ -11,14 +11,24 @@ function sinceLastRelease(releaseDate){
     return elapsedDays;
   }
 
+function getMonoRepoSite(filter, tagName){
+  if(filter){
+    const tag = tagName.split('@');
+    console.log(tag[0]);
+    return filter == tag[0] ? true : false;
+  }
+
+  return true;
+}
+
 const Releaselist = props => {
-// console.log(props.releases);
+  console.log(props.filter);
     return (
 <>
 <div className={styles.grid}>
         {props.releases.map((release) => (
           <>
-            <div className={ sinceLastRelease(release.updatedAt) < 8 ? styles.green + " " + styles.card : sinceLastRelease(release.updatedAt) < 14 ? styles.amber + " " + styles.card : styles.red + " " + styles.card}>
+            <div className={ !getMonoRepoSite(props.filter, release.tagName) ? styles.grey + " " + styles.card : sinceLastRelease(release.updatedAt) < 8 ? styles.green + " " + styles.card : sinceLastRelease(release.updatedAt) < 14 ? styles.amber + " " + styles.card : styles.red + " " + styles.card}>
               <h3>{release.tagName}</h3>
               <p>{ sinceLastRelease(release.updatedAt) + ' days since release' }
               </p>

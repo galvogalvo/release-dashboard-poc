@@ -1,13 +1,15 @@
 import styles from '../../styles/Home.module.css'
+import Logo from '../components/logo.js'
 import Link from 'next/link'
 
 function Navbar() {
 
 return (
     <>
+    <Logo />
     <h1 className={styles.title}>
-          TTG Release Dashboard
-        </h1>
+          Release Dashboard
+    </h1>
 
         <ul className={styles.navigation}>
           <li>
@@ -16,17 +18,17 @@ return (
           </Link>
           </li>
           <li>
-          <Link href="/core/next-web-lt-nyt">
+          <Link href="/core/next-web-lt-nyt?site=lt-nytg">
             <a>Monorepo: LT / NTYTG</a>
           </Link>
           </li>
           <li>
-          <Link href="/core/next-web-lt-nyt">
+          <Link href="/core/next-web-lt-nyt?site=todaytix">
             <a>Monorepo: TodayTix.com</a>
           </Link>
           </li>
           <li>
-          <Link href="/core/next-web-lt-nyt">
+          <Link href="/core/next-web-lt-nyt?site=whitelabel">
             <a>Monorepo: WhiteLabel</a>
           </Link>
           </li>
