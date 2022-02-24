@@ -2,7 +2,22 @@ import styles from '../../styles/Home.module.css'
 import Logo from '../components/logo.js'
 import Link from 'next/link'
 
-function Navbar() {
+function formatRepoName(name){
+
+  let label = name;
+  if(name.includes("=")){
+    label = name.split("=")[1];
+    
+  }
+
+  if(label == "iOS"){
+    return label;
+  }
+
+  return label.charAt(0).toUpperCase() + label.slice(1);;
+}
+
+const Navbar = props => {
 
 return (
     <>
@@ -17,41 +32,17 @@ return (
             <a>All Repos</a>
           </Link>
           </li>
-          <li>
-          <Link href="/core/iOS">
-            <a>TT iOS</a>
-          </Link>
-          </li>
-          <li>
-          <Link href="/core/android">
-            <a>TT Android</a>
-          </Link>
-          </li>
-          <li>
-          <Link href="/core/platform">
-            <a>Platform</a>
-          </Link>
-          </li>
-          <li>
-          <Link href="/core/backstage">
-            <a>Backstage</a>
-          </Link>
-          </li>
-          <li>
-          <Link href="/core/next-web-lt-nyt?site=lt-nytg">
-            <a>Monorepo: LT / NTYTG</a>
-          </Link>
-          </li>
-          <li>
-          <Link href="/core/next-web-lt-nyt?site=todaytix">
-            <a>Monorepo: TodayTix.com</a>
-          </Link>
-          </li>
-          <li>
-          <Link href="/core/next-web-lt-nyt?site=whitelabel">
-            <a>Monorepo: WhiteLabel</a>
-          </Link>
-          </li>
+
+          { props.navLinks.map((link) => (
+            <>
+            <li>
+              <Link href={"/core/" + link}>
+                <a>{formatRepoName(link)}</a>
+              </Link>
+            </li>
+            </>
+          ))        
+        }
         </ul>
     </>
 );

@@ -14,7 +14,6 @@ function sinceLastRelease(releaseDate){
 function getMonoRepoSite(filter, tagName){
   if(filter){
     const tag = tagName.split('@');
-    console.log(tag[0]);
     return filter == tag[0] ? true : false;
   }
 
@@ -22,7 +21,6 @@ function getMonoRepoSite(filter, tagName){
 }
 
 const Releaselist = props => {
-  console.log(props.filter);
     return (
 <>
 <div className={styles.grid}>

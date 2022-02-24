@@ -6,13 +6,16 @@ import Repogrid from './components/repogrid'
 import { gql } from "@apollo/client";
 import client from "../apollo-client";
 
-export default function Home({ repositories }) {
+const organization = process.env.ORGANIZATION;
+const navigation = process.env.NAVIGATION;
+
+export default function Home({ repositories, navLinks }) {
   return (
     <div className={styles.container}>
       <Header />
 
       <main className={styles.main}>
-        <Navbar />
+        <Navbar navLinks={navLinks} />
 
         <Repogrid repositories={repositories} />
       </main>
@@ -22,10 +25,11 @@ export default function Home({ repositories }) {
 }
 
 export async function getStaticProps() {
+
   const { data } = await client.query({
     query: gql`
     query{
-      organization(login: "TodayTix"){
+      organization(login: "${organization}"){
         repositories(first:100, orderBy: { field: NAME, direction: ASC}){
           nodes{
             id
@@ -64,7 +68,8 @@ export async function getStaticProps() {
   });
   return {
     props: {
-      repositories: data.organization.repositories.nodes
+      repositories: data.organization.repositories.nodes,
+      navLinks: navigation.split(",")
     },
  };
 }
