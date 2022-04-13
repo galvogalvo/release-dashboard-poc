@@ -39,6 +39,7 @@ export async function getStaticProps() {
               name
               tagName
               createdAt
+              isDraft
               author {
                 id
                 name
@@ -52,6 +53,7 @@ export async function getStaticProps() {
                   name
                   tagName
                   createdAt
+                  isDraft
                   author {
                     id
                     name

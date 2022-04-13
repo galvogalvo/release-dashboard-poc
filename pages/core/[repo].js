@@ -39,12 +39,14 @@ export async function getServerSideProps(context) {
             name
             tagName
             updatedAt
+            isDraft
           }
         }
       }
     }
     `,
   });
+  console.log(data.repository.releases.nodes);
   return {
     props: {
       filter: filter,

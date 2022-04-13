@@ -16,7 +16,7 @@ const Repogrid = props => {
 <>
 <div className={styles.grid}>
         {props.repositories.map((repository) => (
-          repository.latestRelease && 
+          repository.latestRelease && !repository.latestRelease.isDraft &&
           <>
             <div className={ sinceLastRelease(repository.latestRelease.createdAt) < 8 ? styles.green + " " + styles.card : sinceLastRelease(repository.latestRelease.createdAt) < 14 ? styles.amber + " " + styles.card : styles.red + " " + styles.card}>
               <h3>{repository.name}</h3>
