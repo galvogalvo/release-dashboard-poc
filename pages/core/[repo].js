@@ -46,7 +46,7 @@ export async function getServerSideProps(context) {
     }
     `,
   });
-  console.log(data.repository.releases.nodes);
+  
   return {
     props: {
       filter: filter,
