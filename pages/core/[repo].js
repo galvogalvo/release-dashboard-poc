@@ -1,7 +1,7 @@
 import styles from '../../styles/Home.module.css'
-import Header from '../components/header'
-import Navbar from '../components/navbar'
-import Releaselist from '../components/releaselist'
+import Header from '../../components/header'
+import Navbar from '../../components/navbar'
+import Releaselist from '../../components/releaselist'
 
 import { gql } from "@apollo/client";
 import client from "../../apollo-client";
